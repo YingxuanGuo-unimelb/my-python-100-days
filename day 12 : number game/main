@@ -1,0 +1,54 @@
+#Number Guessing Game Objectives:
+
+# Include an ASCII art logo.
+# Allow the player to submit a guess for a number between 1 and 100.
+# Check user's guess against actual answer. Print "Too high." or "Too low." depending on the user's answer. 
+# If they got the answer correct, show the actual answer to the player.
+# Track the number of turns remaining.
+# If they run out of turns, provide feedback to the player. 
+# Include two different difficulty levels (e.g., 10 guesses in easy mode, only 5 guesses in hard mode).
+
+# TODO-3:create a function called compare_number(), which compare the number the player guessed and the random number. return the result of comparison.
+def compare_number():
+    if guess_number == random_number:
+        return "You got it!"
+    elif guess_number > random_number:
+        return "Too high"
+    elif guess_number < random_number:
+        return "Too low"
+
+# TODO-4:define a function called guess_a_nubmer(), ask the player to guess a number.
+def guess_a_number():
+    guess_number = int(input("Make a guess: "))
+    return guess_number
+# TODO-1:import logo, and create a random nubmer.
+from art import logo
+import random
+print(logo)
+print("Welcome to the Number Guessing Game!")
+print("I'm thinking of a number between 1 and 100.")
+random_number = random.randint(1,100)
+print(f"the correct answer is {random_number}")
+
+# TODO-2:ask the player which mode does he want? eazy or hard. eazy has 10 chances, and hard has only 5 chances.
+if input("Choose a difficulty. Type 'easy' or 'hard': ") == "easy":
+    chance = 10
+else:
+    chance = 5
+
+# TODO-5:call the function. reduce 1 chance.
+print(f"You have {chance} attempts remaining to guess the number.")
+while chance > 0:
+    guess_number = guess_a_number()
+    result = compare_number()
+    print(result)
+    chance -= 1
+    if result == "You got it!":
+        chance = 0
+    else:
+        if chance == 0:
+            print("You've run out of guesses, you lose.")
+        else:
+            print("Guess again")
+            print(f"You have {chance} attempts remaining to guess the number.")
+
